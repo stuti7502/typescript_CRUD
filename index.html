@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <title>CRUD operations</title>
+    <style>
+        .input-group + div{
+            color: red;
+            font-size: 18px;
+        }
+        /* h4{
+            padding-left: 20px;
+        } */
+        .card{
+            margin-top: 140px;
+        }
+        #dropdowncur{
+            height: 38px;
+        }
+    </style>
+    </head>
+    <body class="bg-dark d-flex justify-content-center">
+        <div class="card mb-3 bg-dark"  style="width: 50rem;">
+            <div class="card-body">
+                <h4 class="text-white card-title mb-4">Add Products<button class="btn btn-info" style="float: right;"onclick="location.href='index1.html'">View Products</button></h4>
+            <form id="details">
+            <div class="input-group">
+                <span class="input-group-text">Product ID    </span>
+                <input type="number" aria-label="product id" class="form-control" id="id">
+            </div><div id="errorid"></div><br>
+            <div class="input-group">
+                <span class="input-group-text">Product Name</span>
+                <input type="text" aria-label="product name" class="form-control" id="pname">
+            </div><div id="errorname"></div><br>
+            <div class="input-group">
+                <span class="input-group-text">Product Price</span>
+                <input type="number" aria-label="product price" class="form-control" id="price"><div class="dropdown">
+                    
+                    <select id="dropdowncur">
+                        <option>₹</option>
+                        <option>$</option>
+                        <option>€</option>
+                    </select>
+                  </div> 
+            </div><div id="errorprice"></div><br>
+            <div class="input-group">
+                <span class="input-group-text">Product Photo</span>
+                <input type="file" aria-label="product photo" class="form-control" id="photo" action="image/*" onchange="imageValidation()">
+            </div><div id="errorphoto"></div><br>
+            <div class="input-group d-block">
+                <span class="input-group-text">Payment Options</span>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="paym" value="COD" id="flexRadioDefault1">
+                    <label class="form-check-label text-light" for="flexRadioDefault1">
+                      COD
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="paym" value="UPI" id="flexRadioDefault2">
+                    <label class="form-check-label text-light" for="flexRadioDefault2">
+                      UPI
+                    </label>
+                  </div>
+            </div><div id="errorpayment"></div><br> 
+            <div class="input-group">
+                <span class="input-group-text w-100">Coupons</span><br>  
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="bank" value="Bank discount" checked>
+                    <label class="form-check-label text-light" for="inlineCheckbox1">Bank discount</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="new_user" value="New User discount">
+                    <label class="form-check-label text-light" for="inlineCheckbox2">New User discount</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="coupons" value="Any other Coupouns">
+                    <label class="form-check-label text-light" for="inlineCheckbox3">Any other Coupouns</label>
+                  </div>
+            </div><div id="errorphoto"></div><br>
+            <div class="input-group">
+                <span class="input-group-text">Product Description</span>
+                <input type="text" aria-label="product description" class="form-control" id="description">
+            </div><div id="errordesc"></div><br>
+            <button type="button" class="btn btn-primary" value="submit" id="submit" onclick="addData()">Add</button>
+            <button class="btn btn-danger m-4" id="clear1" onclick="clear1()">Clear</button>
+        </form>
+            </div>
+        </div>
+        
+        <script src="index.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/5594ca95a7.js" crossorigin="anonymous"></script>
+        
+    </body>
+</html>
