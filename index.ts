@@ -5,11 +5,11 @@ let pPrice = document.getElementById('price') as HTMLInputElement;
 let pDescription = document.getElementById('description') as HTMLInputElement;
 let dropdown = document.getElementById('dropdowncur') as HTMLInputElement;
 let payment= document.querySelector('input[name="paym"]:checked') as HTMLInputElement;
-// var bank = (document.getElementById('bank') as HTMLInputElement).checked?(document.getElementById('bank') as HTMLInputElement).value:'';
-// var new_user = (document.getElementById('new_user') as HTMLInputElement).checked?(document.getElementById('new_user') as HTMLInputElement).value:''
-// var coupons = (document.getElementById('coupons') as HTMLInputElement).checked?(document.getElementById('coupons') as HTMLInputElement).value:''
+let offers: any= document.querySelectorAll('input[name="offers"]:checked').values;
+var markedCheckbox:any = document.getElementsByName('offers');
 let editIndex: any;
 let editImage: any;
+var offers_array:any = '';
 
 var product: any;
 if (localStorage.getItem("productArray") == null) {
@@ -123,6 +123,12 @@ function validateForm2(){
 }
 //inserting data
 function addData() {
+    
+  for (var checkbox of markedCheckbox) {  
+    if (checkbox.checked){  
+      // console.log(checkbox.value + ' ')
+      offers_array += checkbox.value + ', '; } 
+  }  
   let payment= document.querySelector('input[name="paym"]:checked') as HTMLInputElement;
   if(validateForm()){
   var product: any;
@@ -147,16 +153,18 @@ function addData() {
     // bankd: bank,
     // new_userd: new_user,
     // couponsd: coupons
+    offers: offers_array
   });
   
   localStorage.setItem('productArray', JSON.stringify(product));
 
   location.reload();
   location.href = 'index1.html'
+  
 });
 }
 }
-
+console.log(offers)
 
 viewData();
 
@@ -178,6 +186,7 @@ function viewData(){
         html += `<td>${element.drop} ${element.price}</td>`
         html += `<td><div style="width:150px; height:100px;"><img style="max-width: 100%; max-height:100%;" src="${element.photo}"/></div></td>`
         html += `<td>${element.pay}</td>`
+        html += `<td>${element.offers}</td>`
         html += `<td>${element.description}</td>`
         html += `<td><button type="button" class="btn btn-primary" onclick='updateData(${index})' data-bs-toggle="modal" data-bs-target="#editModal"><i class="fa fa-pencil" aria-hidden="true"></i></button></td>`
         html += `<td><button type="button" class="btn btn-danger" onclick='deleteData(${index})'><i class="fa fa-trash" aria-hidden="true"></i></button></td>`
@@ -190,7 +199,6 @@ function viewData(){
     });
   
 }
-
 
 // delete data
 function deleteData(index: any){
@@ -227,9 +235,17 @@ function updateData(index: any) {
     (document.getElementById('modal_price') as HTMLInputElement).value = productInfo.price;
     (document.getElementById('modal_description') as HTMLInputElement).value = productInfo.description;
     (document.getElementById("modal_dropdowncur") as HTMLInputElement).value = productInfo.drop;
-    (document.querySelector('input[name="paym"]:checked') as HTMLInputElement).value = productInfo.pay;
-    // (document.querySelector('input[name="paym"]:checked') as HTMLInputElement).value = productInfo.pay;
+    
     editIndex = index;
+    console.log(editIndex);
+    (document.getElementById(productInfo.pay) as HTMLInputElement).checked = true;
+}
+
+function charCount(textarea: any){
+  var initial = 500;
+  var length: any = textarea.value.length;
+  document.getElementById('word-count')!.textContent = initial - length + ' '
+
 }
 //after changing, update the data
 function saved()
@@ -242,27 +258,34 @@ function saved()
     let price = (document.getElementById('modal_price') as HTMLInputElement).value;
     let description = (document.getElementById('modal_description') as HTMLInputElement).value;
     let pay = (document.querySelector('input[name="paym"]:checked') as HTMLInputElement).value;
-    let currency = (document.getElementById("modal_dropdowncur") as HTMLInputElement).value;
+    let drop = (document.getElementById("modal_dropdowncur") as HTMLInputElement).value;
+    console.log(photo.value)
     if (photo.value != '') {
-      const reader = new FileReader();
+      
+      let reader = new FileReader();
       reader.readAsDataURL(photo.files[0]);
+      // console.log(currency)
       reader.addEventListener('load', () => {
         let url = reader.result;
-        let updatedData = { id, name, currency, price, description, photo: url, pay};
+        let updatedData = { id, name, drop, price, description, photo: url, pay};
+        console.log(updatedData)
         let productInfo = JSON.parse(localStorage.getItem('productArray')!);
         productInfo[idx] = updatedData;
         localStorage.setItem('productArray', JSON.stringify(productInfo));
       });
     } else {
-      let updatedData = { id, name, currency, price, description, photo: editImage, pay};
+      let updatedData = { id, name, drop, price, description, photo: editImage, pay};
+      console.log(updatedData)
       let productInfo = JSON.parse(localStorage.getItem('productArray')!);
+      console.log(idx);
       productInfo[idx] = updatedData;
       localStorage.setItem('productArray', JSON.stringify(productInfo));
     }
     editIndex = null;
-    location.reload();
+    // location.reload();
 }
 }
+viewData();
 //search by product id
 function searchid(){
   var input: any, filter, table: any, tr, td, td1, i, txtValue, txtValue1;

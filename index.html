@@ -65,22 +65,22 @@
             <div class="input-group">
                 <span class="input-group-text w-100">Coupons</span><br>  
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="bank" value="Bank discount" checked>
+                    <input class="form-check-input" type="checkbox" id="bank" name="offers" value="Bank discount" checked>
                     <label class="form-check-label text-light" for="inlineCheckbox1">Bank discount</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="new_user" value="New User discount">
+                    <input class="form-check-input" type="checkbox" id="new_user" name="offers" value="New User discount">
                     <label class="form-check-label text-light" for="inlineCheckbox2">New User discount</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="coupons" value="Any other Coupouns">
+                    <input class="form-check-input" type="checkbox" id="coupons" name="offers" value="Any other Coupouns">
                     <label class="form-check-label text-light" for="inlineCheckbox3">Any other Coupouns</label>
                   </div>
             </div><div id="errorphoto"></div><br>
             <div class="input-group">
                 <span class="input-group-text">Product Description</span>
-                <input type="text" aria-label="product description" class="form-control" id="description">
-            </div><div id="errordesc"></div><br>
+                <textarea aria-label="product description" class="form-control" id="description" onkeyup="charCount(this)" maxlength="500"></textarea>
+            </div><div id="errordesc"></div><div class="text-light"><span  id="word-count" >0 </span>charcaters left</div><br>
             <button type="button" class="btn btn-primary" value="submit" id="submit" onclick="addData()">Add</button>
             <button class="btn btn-danger m-4" id="clear1" onclick="clear1()">Clear</button>
         </form>
