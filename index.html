@@ -50,7 +50,7 @@
             <div class="input-group d-block">
                 <span class="input-group-text">Payment Options</span>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="paym" value="COD" id="flexRadioDefault1">
+                    <input class="form-check-input" type="radio" name="paym" value="COD" id="flexRadioDefault1" checked>
                     <label class="form-check-label text-light" for="flexRadioDefault1">
                       COD
                     </label>
@@ -61,11 +61,11 @@
                       UPI
                     </label>
                   </div>
-            </div><div id="errorpayment"></div><br> 
+            </div><div id="errorpayment" class="text-light"></div><br> 
             <div class="input-group">
                 <span class="input-group-text w-100">Coupons</span><br>  
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="bank" name="offers" value="Bank discount" checked>
+                    <input class="form-check-input" type="checkbox" id="bank" name="offers" value="Bank discount">
                     <label class="form-check-label text-light" for="inlineCheckbox1">Bank discount</label>
                   </div>
                   <div class="form-check form-check-inline">
@@ -76,11 +76,11 @@
                     <input class="form-check-input" type="checkbox" id="coupons" name="offers" value="Any other Coupouns">
                     <label class="form-check-label text-light" for="inlineCheckbox3">Any other Coupouns</label>
                   </div>
-            </div><div id="errorphoto"></div><br>
+            </div><div id="errorcheck"></div><br>
             <div class="input-group">
                 <span class="input-group-text">Product Description</span>
                 <textarea aria-label="product description" class="form-control" id="description" onkeyup="charCount(this)" maxlength="500"></textarea>
-            </div><div id="errordesc"></div><div class="text-light"><span  id="word-count" >500 </span>charcaters left</div><br>
+            </div><div id="errordesc"></div><div class="text-light"><span  id="word-count" >50 </span>charcaters left</div><br>
             <button type="button" class="btn btn-primary" value="submit" id="submit" onclick="addData()">Add</button>
             <button class="btn btn-danger m-4" id="clear1" onclick="clear1()">Clear</button>
         </form>

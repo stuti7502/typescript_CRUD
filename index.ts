@@ -5,7 +5,7 @@ let pPrice = document.getElementById('price') as HTMLInputElement;
 let pDescription = document.getElementById('description') as HTMLInputElement;
 let dropdown = document.getElementById('dropdowncur') as HTMLInputElement;
 let payment= document.querySelector('input[name="paym"]:checked') as HTMLInputElement;
-let offers: any= document.querySelectorAll('input[name="offers"]:checked').values;
+let offers: any= document.querySelector('input[name="offers"]:checked');
 var markedCheckbox:any = document.getElementsByName('offers');
 let editIndex: any;
 let editImage: any;
@@ -45,7 +45,12 @@ function validateForm(){
           flag = false;
         }
     }
-    
+    if((document.getElementById('bank')! as HTMLInputElement).checked == false && (document.getElementById('new_user')! as HTMLInputElement).checked == false && (document.getElementById('coupons')! as HTMLInputElement).checked == false){
+      document.getElementById('errorcheck')!.textContent = 'Select an option'
+      flag = false;
+    }else if((document.getElementById('bank')! as HTMLInputElement).checked == true || (document.getElementById('new_user')! as HTMLInputElement).checked == true || (document.getElementById('coupons')! as HTMLInputElement).checked == true){
+      document.getElementById('errorcheck')!.textContent = ''
+    }
     if(pname==""){
       document.getElementById('errorname')!.textContent = "Name required"
       flag = false;    
@@ -242,7 +247,7 @@ function updateData(index: any) {
 }
 
 function charCount(textarea: any){
-  var initial = 500;
+  var initial = 50;
   var length: any = textarea.value.length;
   document.getElementById('word-count')!.textContent = initial - length + ' '
 
@@ -282,7 +287,7 @@ function saved()
       localStorage.setItem('productArray', JSON.stringify(productInfo));
     }
     editIndex = null;
-    // location.reload();
+    location.reload();
 }
 }
 viewData();

@@ -6,7 +6,7 @@ let pPrice = document.getElementById('price');
 let pDescription = document.getElementById('description');
 let dropdown = document.getElementById('dropdowncur');
 let payment = document.querySelector('input[name="paym"]:checked');
-let offers = document.querySelectorAll('input[name="offers"]:checked').values;
+let offers = document.querySelector('input[name="offers"]:checked');
 var markedCheckbox = document.getElementsByName('offers');
 let editIndex;
 let editImage;
@@ -46,6 +46,13 @@ function validateForm() {
             document.getElementById('errorid').textContent = "ID already exists";
             flag = false;
         }
+    }
+    if (document.getElementById('bank').checked == false && document.getElementById('new_user').checked == false && document.getElementById('coupons').checked == false) {
+        document.getElementById('errorcheck').textContent = 'Select an option';
+        flag = false;
+    }
+    else if (document.getElementById('bank').checked == true || document.getElementById('new_user').checked == true || document.getElementById('coupons').checked == true) {
+        document.getElementById('errorcheck').textContent = '';
     }
     if (pname == "") {
         document.getElementById('errorname').textContent = "Name required";
@@ -232,7 +239,7 @@ function updateData(index) {
     document.getElementById(productInfo.pay).checked = true;
 }
 function charCount(textarea) {
-    var initial = 500;
+    var initial = 50;
     var length = textarea.value.length;
     document.getElementById('word-count').textContent = initial - length + ' ';
 }
@@ -270,7 +277,7 @@ function saved() {
             localStorage.setItem('productArray', JSON.stringify(productInfo));
         }
         editIndex = null;
-        // location.reload();
+        location.reload();
     }
 }
 viewData();
